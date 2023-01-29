@@ -1,0 +1,21 @@
+Create a simple mobile app, using the React Native framework, that, through the GitHub API, 
+
+allows you to view the list of stargazers in a repository 
+(the list of users who have added it to their favorites). 
+
+
+The app must allow the user to type the 
+owner and name of the repository and must therefore 
+
+
+show the list (including avatar and username) of the users who have added it to their favorites.
+
+DETAIL:
+
+The details matter. 
+
+Tests are expected, as is well written, simple idiomatic code. 
+
+We will also evaluate both app architecture and API specs adherence, 
+
+as well as proper UI/UX choices and documentation.
