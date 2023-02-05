@@ -6,4 +6,5 @@ export default class Strings {
   static readonly error_user: string = 'Utente Github non più essere vuoto';
   static readonly error_repository: string = 'Repository non può essere vuoto';
   static readonly error_generic: string = 'Errore di connessione generico';
+  static readonly home_github_Non_Found: string = 'Utente GitHub Non trovato';
 }
