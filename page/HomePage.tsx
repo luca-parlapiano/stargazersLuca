@@ -4,8 +4,10 @@ import {GitHubInput} from '../components/GitHubInput';
 import {Card, Button, Icon, Divider} from 'react-native-elements';
 import Strings from '../Strings';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {Api} from '../Api';
 
 export function HomeScreen() {
+
   const [loading, setLoading] = useState<boolean>(false);
   const [notReady, setNotReady] = useState<boolean>(false);
 
@@ -27,6 +29,7 @@ export function HomeScreen() {
       if (gitHubRepository) {
         setError('');
         console.log('checkOK');
+       
         navigation.navigate('ListaStelle', {data: 'ciao'});
       } else {
         setError(Strings.error_repository);
@@ -38,6 +41,9 @@ export function HomeScreen() {
     }
   };
 
+  async function getStar() {   
+     const result = await Api.getStar(gitHubUser,gitHubRepository);
+  }
   const saveData = (type: string, data?: string) => {
     type === 'user' ? setGitHubUser(data) : setGitHubRepository(data);
     /*console.log('Controllo type ' + type);

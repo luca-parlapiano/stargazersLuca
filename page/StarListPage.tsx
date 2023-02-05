@@ -8,7 +8,6 @@ export function StarListScreen() {
 
   React.useEffect(() => {
     console.log(route.params);
-    
   }, []);
 
   return (
