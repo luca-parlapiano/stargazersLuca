@@ -19,7 +19,11 @@ export default function App() {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen name="ListaStelle" component={StarListScreen} />
         <Stack.Screen name="DettagliUtente" component={UserDetailScreen} />
       </Stack.Navigator>
