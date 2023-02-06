@@ -6,43 +6,44 @@ import Strings from '../Strings';
 import ApiUrl from '../Api';
 import {useNavigation} from '@react-navigation/native';
 
+//HOME SCREEN THE START PAGE OF APP
+
 export function HomeScreen() {
   const [loading, setLoading] = useState<boolean>(false);
-
   const [gitHubUser, setGitHubUser] = useState<string>();
   const [gitHubRepository, setGitHubRepository] = useState<string>();
   const [error, setError] = useState<string>('');
 
   const navigation = useNavigation();
 
-  React.useEffect(() => {
+  React.useEffect(() => { //This reset state when page loaded
     setLoading(false);
+    setGitHubUser('');
+    setGitHubRepository('');
   }, []);
 
-  const checkUser = () => {
+  const checkUser = () => {  //This function is goint to call before Rest call, check if user and reposotory are empty or undefined
     setLoading(true);
-    console.log('Controllo gitHubUser ' + gitHubUser);
-    console.log('Controllo gitHubRepository ' + gitHubRepository);
     if (gitHubUser) {
       if (gitHubRepository) {
-        setError('');
-        console.log('checkOK');
-        getStars();
+        setError(''); //Reset Error
+        getStars(); //Are goint to call github api
       } else {
-        setError(Strings.error_repository);
+        setError(Strings.error_repository); //Error STOP
         setLoading(false);
       }
     } else {
-      setError(Strings.error_user);
+      setError(Strings.error_user); //Error STOP
       setLoading(false);
     }
   };
 
   const getStars = () => {
-    //const url: string = ApiUrl.URL_ENDPOINT + gitHubUser + '/' + gitHubRepository + ApiUrl.STARGAZER;
 
-    const url: string = ApiUrl.URL_ENDPOINT + 'mattiaferigutti' + '/' + 'Backdrop-Android' + ApiUrl.STARGAZER;
+    //REST github Api
+    const url: string = ApiUrl.URL_ENDPOINT + gitHubUser + '/' + gitHubRepository + ApiUrl.STARGAZER;
 
+    //FETCH data from api
     fetch(url, {
       method: 'GET',
       headers: {
@@ -55,16 +56,18 @@ export function HomeScreen() {
       .then(res => {
         if (res.message === 'Not Found') {
           setError(Strings.home_github_Non_Found);
-        } else {
           setLoading(false);
+        } else {
+          setLoading(false); //OK we have data then we can start new page and send data to page for show list
           navigation.navigate('ListaStelle', {data: res});
         }
       })
       .catch(err => {
         console.log('Connection Error' + err.message);
       });
-  }
+  };
 
+  //This function is passed inside item for write the state in main page
   const saveData = (type: string, data?: string) => {
     type === 'user' ? setGitHubUser(data) : setGitHubRepository(data);
   };
@@ -78,6 +81,9 @@ export function HomeScreen() {
         <View style={{alignItems: 'center', paddingBottom: 20}}>
           <Text style={{color: 'red'}}>{error}</Text>
         </View>
+        <Divider
+          style={{marginTop: 10, marginBottom: 10, backgroundColor: 'black'}}
+        />
         <Button
           loading={loading}
           buttonStyle={{
@@ -89,11 +95,8 @@ export function HomeScreen() {
           icon={<Icon name="arrow-right" size={20} color="white" />}
           title={Strings.home_github_invia}
           onPress={() => {
-            checkUser();
+            checkUser(); //Start CHECK
           }}
-        />
-        <Divider
-          style={{marginTop: 10, marginBottom: 10, backgroundColor: 'black'}}
         />
       </Card>
     </View>

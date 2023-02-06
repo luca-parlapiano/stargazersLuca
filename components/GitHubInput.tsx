@@ -4,6 +4,10 @@ import {View} from 'react-native';
 import Strings from '../Strings';
 import React from 'react';
 
+//Single component for input
+//This component can switch icon and text destination with type props
+//user = github User -- other = Repository
+
 interface Props {
   type: string;
   onPress: (type: string, data?: string) => void;

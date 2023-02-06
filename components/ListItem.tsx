@@ -2,6 +2,8 @@ import {View} from 'react-native';
 import React from 'react';
 import {Card, Avatar, Text} from 'react-native-elements';
 
+//Single item for user's star
+//we take many information from api, i have selected only 2 item, avater picture ed login user
 interface Props {
   index: number;
   avatarUrl: string;

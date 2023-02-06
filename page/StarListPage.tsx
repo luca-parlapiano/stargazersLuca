@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {Text, View, ScrollView} from 'react-native';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import {Card, Avatar} from 'react-native-elements';
-import { ListItem } from '../components/ListItem';
+import {View, ScrollView} from 'react-native';
+import {useRoute} from '@react-navigation/native';
+import {ListItem} from '../components/ListItem';
+
+// THIS PAGE SHOWING USERS WITH AVATAR AND LOGIN
 
 export function StarListScreen() {
   const [list, setList] = useState([]);
@@ -10,12 +11,8 @@ export function StarListScreen() {
   const route = useRoute();
 
   React.useEffect(() => {
-    setList(route.params.data);
-    //console.log(route.params.data);
+    setList(route.params?.data);
   }, []);
-  {
-    console.log(list);
-  }
 
   return (
     <View style={{justifyContent: 'center'}}>

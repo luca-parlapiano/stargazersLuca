@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {HomeScreen, UserDetailScreen, StarListScreen} from './page/Screen';
+//Screen
+import {HomeScreen, StarListScreen} from './page/Screen';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
@@ -10,6 +11,8 @@ export type RootStackParamList = {
   DettagliUtente: {idUtente: number} | undefined;
   ListaStelle: any;
 };
+
+//START PAGE in this page there is only the navigation stack.
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -25,7 +28,6 @@ export default function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen name="ListaStelle" component={StarListScreen} />
-        <Stack.Screen name="DettagliUtente" component={UserDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
